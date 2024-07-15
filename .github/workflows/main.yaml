@@ -82,7 +82,7 @@ jobs:
               \"docker pull $image\",
               \"echo Pulled latest Docker image\",
               \"docker run -d -p 3000:3000 --name api $image\",
-              \"echo Started new container\",
+              \"echo Started new container\"
             ]}" --query "Command.CommandId" --output text)
 
           echo "SSM Command ID: $command_id"

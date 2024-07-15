@@ -77,11 +77,10 @@ jobs:
             --parameters "{\"commands\": [
               \"aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin $ecr_registry \",
               \"echo Logged in to AWS ECR\",
-              \"[[ $(docker ps -aq -f name=api) ]] && docker stop api || echo Container api not running\",
-              \"[[ $(docker ps -aq -f name=api) ]] && docker rm -f api || echo Container api not found\",
+              
               \"docker pull '"$image"'\",
               \"echo Pulled latest Docker image\",
-              \"docker run -d -p 3000:3000 --name api '"$image"' \",
+              \"docker run --rm -d -p 3000:3000 --name api '"$image"' \",
               \"echo Started new container\"
             ]}" --query "Command.CommandId" --output text)
 

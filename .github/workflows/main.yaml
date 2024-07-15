@@ -81,7 +81,7 @@ jobs:
               \"[[ $(docker ps -aq -f name=api) ]] && docker rm -f api || echo Container api not found\",
               \"docker pull '"$image"'\",
               \"echo Pulled latest Docker image\",
-              \"docker run --rm -d -p 3000:3000 --name api '"$image"' \",
+              \"docker run -d -p 3000:3000 --name api '"$image"' \",
               \"echo Started new container\"
             ]}" --query "Command.CommandId" --output text)
 
